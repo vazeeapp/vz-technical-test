@@ -13,16 +13,17 @@ interface DefinedPrice {
   label: string | null;
 }
 
-const getFrenchPriceFormat = (value: number) => {
+const getFrenchPriceFormat = (price: DefinedPrice) => {
   const PRICE_DECIMAL = 2;
   const PRICE_CURRENCY = "€";
-  const formated = value.toFixed(PRICE_DECIMAL).replace(".", ",");
-  return `${formated} ${PRICE_CURRENCY}`;
+  const formated = price.value.toFixed(PRICE_DECIMAL).replace(".", ",");
+  return { ...price, value: `${formated} ${PRICE_CURRENCY}` };
 };
 
 // retourner le bon prédicat
-// const isDefined = (price: Price): price is DefinedPrice => {
-// };
+const isDefined = (price: Price): price is DefinedPrice => {
+  return price.value !== null;
+};
 
 // le callback du filtre doit être remplacer par le bon typeguard (isDefined)
 // le callback du map doit être remplacer par la bonne fonction (getFrenchPriceFormat)
@@ -37,19 +38,19 @@ export const usePrices = (product: API.Product) => {
     { id: 4, value: product.price4, label: product.price4Label },
     { id: 5, value: product.price5, label: product.price5Label },
   ]
-    .filter(identity)
-    .map(identity);
+    .filter(isDefined)
+    .map(getFrenchPriceFormat);
 };
 
 interface PriceProps {
-  value: number;
+  value: string;
   label: string | null;
 }
 function Price({ value, label }: PriceProps) {
   return (
     <ProductPriceContainer>
-      {/** Afficher le lable s'il existe */}
-      {/** Afficher le prix dans le bon format */}
+      {label && <PriceLabel>{label}</PriceLabel>}
+      <PriceValue>{value}</PriceValue>
     </ProductPriceContainer>
   );
 }
@@ -71,7 +72,13 @@ interface PriceListProps {
 }
 export function PriceList({ product }: PriceListProps) {
   const prices = usePrices(product);
-  return <Fragment>{/**  itérer sur les prix retourné par le hook */}</Fragment>;
+  return (
+    <Fragment>
+      {prices.map((price) => {
+        return <Price value={price.value} label={price.label} key={price.id} />;
+      })}
+    </Fragment>
+  );
 }
 
 export default PriceList;

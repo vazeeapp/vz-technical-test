@@ -7,13 +7,18 @@ function Exercice2() {
   return (
     <Fragment>
       <h1>Exercice 2</h1>
-      {/* <Result /> */}
+      <Result />
     </Fragment>
   );
 }
 
 function Result() {
-  return <PriceList product={PRODUCTS[0]} />;
+  return (
+    <Fragment>
+      <PriceList product={PRODUCTS[0]} />
+      <PriceList product={PRODUCTS[1]} />
+    </Fragment>
+  );
 }
 
 export default Exercice2;
