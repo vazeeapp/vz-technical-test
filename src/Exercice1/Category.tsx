@@ -12,11 +12,11 @@ function Category({ category, children }: Props) {
 
   return (
     <CategoryContainer>
-      <Button>
-        <Description data-enabled></Description>
-        <ToggleIndicator isOpen />
+      <Button onClick={() => setIsOpen((prev) => !prev)}>
+        <Description data-enabled={category.enabled}>{category.description}</Description>
+        <ToggleIndicator isOpen={isOpen} />
       </Button>
-      {/** les enfants sont affichés ici si isOpen est vrai */}
+      {isOpen && <Children>{children}</Children>}
     </CategoryContainer>
   );
 }
