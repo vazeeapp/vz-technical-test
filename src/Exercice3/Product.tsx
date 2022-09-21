@@ -8,8 +8,8 @@ interface ProductBodyProps {
 function Label({ pictogramUrl, label }: ProductBodyProps) {
   return (
     <ProductLabelContainer>
-      {/** Afficher le pictorgram s'il existe */}
-      {}
+      {pictogramUrl && <Pictogram src={pictogramUrl}></Pictogram>}
+      <ProductLabel>{label}</ProductLabel>
     </ProductLabelContainer>
   );
 }
@@ -29,14 +29,16 @@ interface Props {
 function Product({ product }: Props) {
   return (
     <ProductContainer>
-      {/** Afficher le Label */}
-      {/** Afficher la description */}
+      <Label pictogramUrl={product.pictogramUrl} label={product.label}></Label>
+      <Description>{product.description}</Description>
       <PriceList product={product} />
     </ProductContainer>
   );
 }
 
-const Description = styled("div")``;
+const Description = styled("div")`
+  background: green;
+`;
 
 const Pictogram = styled("img")`
   width: 50px;
