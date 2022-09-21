@@ -132,3 +132,8 @@ const setEntities = useSetAtom(setEntitiesAtom);
 ```
 
 Utiliser les composants fait dans les exercices précédents et afficher le menu !
+
+### Le résultat attendu
+
+![Screenshot 2022-09-21 at 15 21 59](https://user-images.githubusercontent.com/55973997/191515208-3ad7dfa7-471a-4206-8263-cdabe0e7bbc2.png)
+
