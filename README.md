@@ -14,6 +14,12 @@ Le but de ce test technique sera de construire une version simplifiée d'un menu
 
 ## Fonctionnement
 
+Pour démarrer le serveur de développement:
+
+```bash
+npm run dev
+```
+
 Pour chaque exercice créer une branche à part:
 
 ```bash
@@ -65,7 +71,9 @@ interface PriceType {
 }
 ```
 
-Créer un custom hook `usePrices` qui permet de filtrer les prix. On gardera seulement les prix dont la valeur `price{x}` est définie.
+Créer un custom hook `usePrices` qui permet de filtrer les prix. On gardera seulement les prix dont la valeur `price{x}` est définie. On formatera également sa valeur avec la fonction `getFrenchPriceFormat`.
+
+On utilisera `usePrices` pour obtenir les prix sous forme de tableau. Dans le composant `PriceList` on bouclera sur `prices` et on utilisera pour chaque élément le composant Price pour afficher un prix.
 
 ### Exercice 3: Afficher un produit
 
@@ -99,13 +107,13 @@ Créer un composant présentationnel `Product` qui accepte en paramètre une str
 - le pictogramme
 - la description
 
-On utilisera `usePrices` pour obtenir les prix sous forme de tableau. On bouclera sur `prices` et on utilisera pour chaque élément le composant Price pour afficher un prix.
-
 ### Exercice 4: Afficher un menu
 
 Dans un terminal taper la commande suivante à la racine du projet et attendre la fin de l'execution du script:
 
-`npm run api`
+```bash
+npm run api
+```
 
 Récupérer la resource `menu` à l'aide de `fetch`, le type de la réponse est le suivant:
 
@@ -115,6 +123,12 @@ interface Menu {
   categories: Category[];
   products: Product[];
 }
+```
+
+Utiliser l'atom en écriture seule `setEntities` pour créer préparer la structure sous forme d'arborescence.
+
+```ts
+const setEntities = useSetAtom(setEntitiesAtom);
 ```
 
 Utiliser les composants fait dans les exercices précédents et afficher le menu !

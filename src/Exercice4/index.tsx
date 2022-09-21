@@ -17,18 +17,16 @@ const ENDPOINT = "http://localhost:4000/v1/menu";
 const makeObject = (response: Response) => response.json() as Promise<API.Menu>;
 
 function useEntities() {
-  // récupérer le setter de l'atom pour initialiser les entités
+  const setEntities = useSetAtom(setEntitiesAtom);
 
   useEffect(() => {
-    // appeler fetch avec ENDPOINT, décoder la réponse json et initialiser les entités
-    //
-    // décommenter pour la ligne suivante (effet symétrique)
-    // return () => setEntities({ categories: [], products: [], menuId: 0 });
+    // Récupérer la resource menu ici avec fetch, axios...
+    return () => setEntities({ categories: [], products: [], menuId: 0 });
   }, []);
 }
 
 function Exercice4() {
-  // useEntities();
+  useEntities();
 
   return (
     <Fragment>
@@ -66,7 +64,7 @@ interface CategoryEntityProps {
 }
 function CategoryEntity({ id, children }: CategoryEntityProps) {
   const [category] = useAtom(selectAtom(categoriesAtom, selectCategory(id)));
-  // afficher la catégorie et ses enfants
+  // Utiliser le composant Category
   return null;
 }
 
@@ -79,7 +77,7 @@ interface ProductEntityProps {
 }
 function ProductEntity({ id }: ProductEntityProps) {
   const [product] = useAtom(selectAtom(productsAtom, selectProduct(id)));
-  // afficher le produit
+  // Utiliser le composant Product
   return null;
 }
 

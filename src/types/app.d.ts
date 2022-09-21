@@ -29,4 +29,16 @@ interface ProductEntity {
 
 type CategoryAndProduct = (CategoryEntity | ProductEntity)[];
 
+interface Price {
+  id: number;
+  value: number | null;
+  label: string | null;
+}
+
+interface DefinedPrice {
+  id: number;
+  value: number;
+  label: string | null;
+}
+
 export as namespace APP;

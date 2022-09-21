@@ -9,7 +9,7 @@ function Label({ pictogramUrl, label }: ProductBodyProps) {
   return (
     <ProductLabelContainer>
       {/** Afficher le pictorgram s'il existe */}
-      {}
+      {/** Afficher le label */}
     </ProductLabelContainer>
   );
 }
@@ -31,7 +31,7 @@ function Product({ product }: Props) {
     <ProductContainer>
       {/** Afficher le Label */}
       {/** Afficher la description */}
-      <PriceList product={product} />
+      {/** Afficher la liste de prix */}
     </ProductContainer>
   );
 }
